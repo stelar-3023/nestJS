@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 /* eslint-disable prettier/prettier */
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 @Entity() // sql table name will be 'coffee'
 export class Coffee {
   @PrimaryGeneratedColumn()
