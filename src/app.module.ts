@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -10,6 +11,9 @@ dotenv.config();
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+    }),
     CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
