@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import * as Joi from '@hapi/joi';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -13,6 +14,10 @@ dotenv.config();
   imports: [
     ConfigModule.forRoot({
       ignoreEnvFile: true,
+      validationSchema: Joi.object({
+        POSTGRES_HOST: Joi.required(),
+        POSTGRES_PORT: Joi.number().default(5432),
+      }),
     }),
     CoffeesModule,
     TypeOrmModule.forRoot({
