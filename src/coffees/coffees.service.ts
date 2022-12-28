@@ -27,7 +27,7 @@ export class CoffeesService {
     console.log('Coffee brands: ', coffeeBrands);
 
     const databaseHost = this.configService.get<string>(
-      'POSTGRES_HOST',
+      'database.host',
       'localhost',
     );
     console.log('databaseHost: ', databaseHost);
