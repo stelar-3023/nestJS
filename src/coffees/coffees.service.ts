@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
 import { Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto/create-coffee.dto';
@@ -20,9 +21,16 @@ export class CoffeesService {
     private readonly flavorRepository: Repository<Flavor>,
 
     private readonly dataSource: DataSource,
+    private readonly configService: ConfigService,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
   ) {
     console.log('Coffee brands: ', coffeeBrands);
+
+    const databaseHost = this.configService.get<string>(
+      'POSTGRES_HOST',
+      'localhost',
+    );
+    console.log('databaseHost: ', databaseHost);
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
