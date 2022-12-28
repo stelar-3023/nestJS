@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CoffeeRefactor1670776667546 implements MigrationInterface {
